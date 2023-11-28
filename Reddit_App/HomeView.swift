@@ -46,15 +46,14 @@ struct HomeView: View {
                     PostView(post: PostStruct.examplePost1)
                     PostView(post: PostStruct.examplePost2)
                     PostView(post: PostStruct.examplePost3)
-                    PostView(post: PostStruct.examplePost1)
-                    PostView(post: PostStruct.examplePost2)
-                    PostView(post: PostStruct.examplePost3)
-                    PostView(post: PostStruct.examplePost1)
-                    PostView(post: PostStruct.examplePost2)
-                    PostView(post: PostStruct.examplePost3)
-                    PostView(post: PostStruct.examplePost1)
-                    PostView(post: PostStruct.examplePost2)
-                    PostView(post: PostStruct.examplePost3)
+                    PostView(post: PostStruct.examplePost4)
+                    PostView(post: PostStruct.examplePost5)
+                    PostView(post: PostStruct.examplePost6)
+                    PostView(post: PostStruct.examplePost7)
+                    PostView(post: PostStruct.examplePost8)
+                    PostView(post: PostStruct.examplePost9)
+                    PostView(post: PostStruct.examplePost10)
+                    PostView(post: PostStruct.examplePost11)
                 }
                 
                     
