@@ -11,6 +11,7 @@ struct PostView: View {
     @State var post: PostStruct
     @State private var isUpvote: Bool = false
     @State private var isDownvote: Bool = false
+    @State private var showThreadView = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -22,9 +23,21 @@ struct PostView: View {
                     .imageScale(.small)
                     .frame(width: 30, height: 40)
                     .clipShape(Circle())
-                Text("r/\(post.threadTitle)")
                 
-            }
+                
+                //Thread navigation
+                NavigationLink(
+                    destination: ThreadView(post: post), // Pass the selected post to ThreadView
+                    label: {
+                        Text("r/\(post.threadTitle)")
+                            .foregroundColor(.black)
+                    })
+                    .padding(.horizontal, 16)
+                
+                
+            }//HStack ends
+            
+            
             Text(post.messageTitle)
                 .font(.title)
                 .fontWeight(.bold)
