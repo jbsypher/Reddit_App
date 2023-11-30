@@ -7,11 +7,14 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var isShowingInProgress = false
+    
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
-                    Button {} label: {
+                    Button {
+                    } label: {
                         Image(systemName: "line.3.horizontal")
                             .foregroundColor(.black)
                     }
@@ -25,10 +28,16 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    Button {} label: {
+                    Button {
+                        isShowingInProgress = true
+                    } label: {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
                     }
+                    .sheet(isPresented: $isShowingInProgress) {
+                                            // The view to navigate to (Replace InProgressView() with the desired view)
+                                            InProgressView()
+                                        }
                     
                     Button {} label: {
                         Image("redditFace")

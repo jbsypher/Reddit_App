@@ -12,6 +12,9 @@ struct CreateView: View {
     @State private var postBody = ""
     @State private var isKeyboardVisible = false
     @Environment(\.presentationMode) var presentationMode
+    @Binding var showingSheet: Bool
+    @Binding var selection: Int
+    @State private var yOffset = UIScreen.main.bounds.height
 
     var body: some View {
         NavigationView {
@@ -27,15 +30,15 @@ struct CreateView: View {
                     .font(Font.system(size: 15, design: .default))
                     .padding(.leading)
                 
-
+                
                 Spacer()
             }
             .navigationBarItems(
                 leading: Button(action: {
+                    showingSheet = false
                     presentationMode.wrappedValue.dismiss()
-                    NavigationLink(destination: HomeView()) {
-                            Text("")
-                    }
+                    selection = 0
+                    
                 }, label: {
                     Image(systemName: "xmark")
                 }),
@@ -47,20 +50,31 @@ struct CreateView: View {
                 })
                 .disabled(postTitle.isEmpty || postBody.isEmpty)
             )
+            .offset(y: yOffset)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    withAnimation (.easeInOut(duration: 0.5)){
+                        yOffset = 0
+                    }
+                }
+                // Show the keyboard immediately upon view appearance
+                
+                
+                self.isKeyboardVisible = true
+            }
+            .padding(.bottom, isKeyboardVisible ? 0 : 0) // Adjust view position when keyboard is visible
+            .edgesIgnoringSafeArea(.bottom) // Ignore safe area for keyboard
         }
-        .onAppear {
-            // Show the keyboard immediately upon view appearance
-            self.isKeyboardVisible = true
-        }
-        .padding(.bottom, isKeyboardVisible ? 0 : 0) // Adjust view position when keyboard is visible
-        .edgesIgnoringSafeArea(.bottom) // Ignore safe area for keyboard
     }
 }
 
 
 
-struct PostCreationView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateView()
+
+extension View {
+    func withSheetTransition() -> some View {
+        return withAnimation {
+            self.transition(.move(edge: .bottom))
+        }
     }
 }
