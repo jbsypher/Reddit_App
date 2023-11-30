@@ -12,9 +12,11 @@ struct PostView: View {
     @State private var isUpvote: Bool = false
     @State private var isDownvote: Bool = false
     @State private var showThreadView = false
+    @State private var isShowingInProgress = false
+
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 5) {
             HStack{
                 Image("redditFace")
                     .resizable()
@@ -32,16 +34,34 @@ struct PostView: View {
                         Text("r/\(post.threadTitle)")
                             .foregroundColor(.black)
                     })
-                    .padding(.horizontal, 16)
+                    .padding(.horizontal, 5)
                 
+                Text("\(post.daysAgo)d")
+                    .foregroundColor(.gray)
+                Spacer()
+                Button(action: {
+                            isShowingInProgress = true
+                        }) {
+                            Text("Join")
+                                .foregroundColor(.white)
+                                .font(.body)
+                                .padding(.horizontal,10)
+                                .padding(.vertical,3)
+                                .background(Color.blue)
+                                .cornerRadius(50)
+                        }
+                        .sheet(isPresented: $isShowingInProgress) {
+                        InProgressView()
+                        }
                 
             }//HStack ends
             
             
             Text(post.messageTitle)
-                .font(.title)
+                .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.black)
+                
             
             Text(post.message)
                 .font(.body)
@@ -80,14 +100,19 @@ struct PostView: View {
                 }
                 Text("   ")
                 //comments
-                Image(systemName: "bubble.left")
+                
+                Button(action: {
+                            isShowingInProgress = true
+                        }) {
+                            Image(systemName: "bubble.left")
+                        }
+                        .sheet(isPresented: $isShowingInProgress) {
+                        InProgressView()
+                        }
                 Text("\(post.commentsNum) Comments")
                     .foregroundColor(.black)
                 Spacer()
-                Image(systemName: "arrow.clockwise")
-                Text("\(post.daysAgo) days ago")
-                    .foregroundColor(.black)
-                
+                                
             }
             .font(.caption)
             .foregroundColor(.gray)

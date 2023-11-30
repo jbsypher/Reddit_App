@@ -14,6 +14,7 @@ struct PostStruct: Identifiable {
     var commentsNum: Int
     var daysAgo: Int
     var activeSubs: Int
+    var inboxMess: String
     
     let id = UUID()
     var isUpvote = false
@@ -29,7 +30,8 @@ struct PostStruct: Identifiable {
             messageTitle: "First Post",
             commentsNum: 25,
             daysAgo: 3,
-            activeSubs: 3492
+            activeSubs: 3492,
+            inboxMess: "Want to join my minecraft server?"
         )
     }
     
@@ -41,7 +43,8 @@ struct PostStruct: Identifiable {
             messageTitle: "Cool Stuff",
             commentsNum: 87,
             daysAgo: 1,
-            activeSubs: 1223
+            activeSubs: 1223,
+            inboxMess: "Let's grab food"
         )
     }
     
@@ -53,7 +56,8 @@ struct PostStruct: Identifiable {
             messageTitle: "Awesome Share",
             commentsNum: 129,
             daysAgo: 5,
-            activeSubs: 2
+            activeSubs: 2,
+            inboxMess: "Take my money"
         )
     }
     
@@ -66,7 +70,8 @@ struct PostStruct: Identifiable {
             messageTitle: "Bug Hunting",
             commentsNum: 55,
             daysAgo: 2,
-            activeSubs: 9993
+            activeSubs: 9993,
+            inboxMess: "1v1 me right now"
         )
     }
     
@@ -78,7 +83,8 @@ struct PostStruct: Identifiable {
             messageTitle: "Lessons in Bugs",
             commentsNum: 320,
             daysAgo: 6,
-            activeSubs: 1028933
+            activeSubs: 1028933,
+            inboxMess: "Want to read Poor Economics with me?"
         )
     }
     
@@ -90,7 +96,8 @@ struct PostStruct: Identifiable {
             messageTitle: "Unraveling Code",
             commentsNum: 42,
             daysAgo: 4,
-            activeSubs: 322
+            activeSubs: 322,
+            inboxMess: "Please don't give me your chicken pot pie again..."
         )
     }
     
@@ -102,7 +109,8 @@ struct PostStruct: Identifiable {
             messageTitle: "The Bugless Dream",
             commentsNum: 99,
             daysAgo: 7,
-            activeSubs:83332
+            activeSubs:83332,
+            inboxMess: "Thanks for your help the other day, I'm your biggest fan"
         )
     }
     
@@ -114,7 +122,8 @@ struct PostStruct: Identifiable {
             messageTitle: "The Art of Debugging",
             commentsNum: 28,
             daysAgo: 3,
-            activeSubs: 38844
+            activeSubs: 38844,
+            inboxMess: "Sup"
         )
     }
     
@@ -126,7 +135,8 @@ struct PostStruct: Identifiable {
             messageTitle: "Discovering Bugs",
             commentsNum: 150,
             daysAgo: 5,
-            activeSubs: 1234
+            activeSubs: 1234,
+            inboxMess: "I like to code. You should join me"
         )
     }
     
@@ -138,7 +148,8 @@ struct PostStruct: Identifiable {
             messageTitle: "Rise of the Debuggers",
             commentsNum: 17,
             daysAgo: 1,
-            activeSubs: 4993
+            activeSubs: 4993,
+            inboxMess: "Subway hits different at 2am"
         )
     }
     
@@ -150,7 +161,8 @@ struct PostStruct: Identifiable {
             messageTitle: "Journey into Code",
             commentsNum: 200,
             daysAgo: 6,
-            activeSubs: 6611
+            activeSubs: 6611,
+            inboxMess: "Hi"
         )
     }
 }

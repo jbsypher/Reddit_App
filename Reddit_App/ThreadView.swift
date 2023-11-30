@@ -16,8 +16,9 @@ struct ThreadCreateView: View {
             messageTitle: "First Post",
             commentsNum: 25,
             daysAgo: 3,
-            activeSubs: 3492
-        ),
+            activeSubs: 3492,
+            inboxMess: "hi"
+        )//Check to see if this code is needed
         
         // Add more PostStruct instances here if needed...
     ]
@@ -31,21 +32,46 @@ struct ThreadCreateView: View {
 
 struct ThreadView: View {
     let post: PostStruct
+    @State private var isShowingInProgress = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("r/\(post.threadTitle)")
-                .font(.headline)
+            HStack{
+                Image("redditFace")
+                    .resizable()
+                    .scaledToFill()
+                    .font(.largeTitle)
+                    .imageScale(.small)
+                    .frame(width: 30, height: 40)
+                    .clipShape(Circle())
+                
+                Text("r/\(post.threadTitle)")
+                    .font(.headline)
+                Spacer()
+                Button(action: {
+                            isShowingInProgress = true
+                        }) {
+                            Text("Join")
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.blue)
+                                .cornerRadius(50)
+                        }
+                        .sheet(isPresented: $isShowingInProgress) {
+                        InProgressView()
+                        }
+            }
+            
+            
             Text("\(post.activeSubs) Active Members")
                 .lineLimit(3)
                 .foregroundColor(.secondary)
-            HStack {
-                Text("Comments: \(post.commentsNum)")
-                Spacer()
-                Text("\(post.daysAgo) days ago")
-            }
+            
         }
         .padding()
+        
+        Spacer()
+        
     }
 }
 

@@ -14,11 +14,15 @@ struct HomeView: View {
             VStack {
                 HStack {
                     Button {
+                        isShowingInProgress = true
                     } label: {
                         Image(systemName: "line.3.horizontal")
                             .foregroundColor(.black)
                     }
                     .padding(.horizontal, 16)
+                    .sheet(isPresented: $isShowingInProgress) {
+                                            InProgressView()
+                                        }
                     
                     Spacer()
                     
@@ -35,11 +39,12 @@ struct HomeView: View {
                             .foregroundColor(.black)
                     }
                     .sheet(isPresented: $isShowingInProgress) {
-                                            // The view to navigate to (Replace InProgressView() with the desired view)
-                                            InProgressView()
-                                        }
+                            InProgressView()
+                        }
                     
-                    Button {} label: {
+                    Button {
+                        isShowingInProgress = true
+                    } label: {
                         Image("redditFace")
                             .resizable()
                             .scaledToFill()
@@ -49,6 +54,9 @@ struct HomeView: View {
                             .clipShape(Circle())
                     }
                     .padding(.horizontal, 16)
+                    .sheet(isPresented: $isShowingInProgress) {
+                            InProgressView()
+                        }
                 }
                 
                 ScrollView{

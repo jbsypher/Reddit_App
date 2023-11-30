@@ -15,6 +15,7 @@ struct CreateView: View {
     @Binding var showingSheet: Bool
     @Binding var selection: Int
     @State private var yOffset = UIScreen.main.bounds.height
+    @State private var isShowingScreen = false
 
     var body: some View {
         NavigationView {
@@ -43,12 +44,15 @@ struct CreateView: View {
                     Image(systemName: "xmark")
                 }),
                 trailing: Button(action: {
-                    // Perform action for "Next" button
+                    isShowingScreen = true
                 }, label: {
                     Text("Next")
                         .fontWeight(.bold)
                 })
-                .disabled(postTitle.isEmpty || postBody.isEmpty)
+                .sheet(isPresented: $isShowingScreen) {
+                    BackEndView()
+                }
+                .disabled(postTitle.isEmpty)
             )
             .offset(y: yOffset)
             .onAppear {
