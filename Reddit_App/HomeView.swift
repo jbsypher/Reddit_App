@@ -20,9 +20,6 @@ struct HomeView: View {
                             .foregroundColor(.black)
                     }
                     .padding(.horizontal, 16)
-                    .sheet(isPresented: $isShowingInProgress) {
-                                            InProgressView()
-                                        }
                     
                     Spacer()
                     
@@ -38,9 +35,6 @@ struct HomeView: View {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
                     }
-                    .sheet(isPresented: $isShowingInProgress) {
-                            InProgressView()
-                        }
                     
                     Button {
                         isShowingInProgress = true
@@ -54,9 +48,9 @@ struct HomeView: View {
                             .clipShape(Circle())
                     }
                     .padding(.horizontal, 16)
-                    .sheet(isPresented: $isShowingInProgress) {
-                            InProgressView()
-                        }
+//                    .sheet(isPresented: $isShowingInProgress) {
+//                            InProgressView()
+//                        }
                 }
                 
                 ScrollView{
@@ -76,6 +70,9 @@ struct HomeView: View {
                     
                 Spacer()
             }
+            .fullScreenCover(isPresented: $isShowingInProgress) {
+                    InProgressView()
+                }
         }
     }
 }

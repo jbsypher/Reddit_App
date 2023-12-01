@@ -81,6 +81,16 @@ struct InboxView: View {
                                 .font(.body)
                                 .foregroundColor(.gray)
                             Spacer()
+                            Button {
+                                isShowingInProgress = true
+                            } label: {
+                                Image(systemName: "ellipsis")
+                                    .foregroundColor(.black)
+                            }
+                            .sheet(isPresented: $isShowingInProgress) {
+                                InProgressView()
+                                }
+                            
                         }
                         .padding(.horizontal)
                         Text("\(post.inboxMess)")
@@ -89,7 +99,7 @@ struct InboxView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .alignmentGuide(.leading) { _ in 0 }
                             .padding(.horizontal)
-                            
+                        
                     }
                     .padding(.vertical, 10)
                     

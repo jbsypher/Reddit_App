@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct CreateView: View {
+    @Environment(\.dismiss) var dismiss
+
     @State private var postTitle = ""
     @State private var postBody = ""
     @State private var isKeyboardVisible = false
-    @Environment(\.presentationMode) var presentationMode
-    @Binding var showingSheet: Bool
-    @Binding var selection: Int
     @State private var yOffset = UIScreen.main.bounds.height
     @State private var isShowingScreen = false
+    
+    @Binding var showingSheet: Bool
+    @Binding var selection: Int
+    let didDismissCreateView: () -> Void
 
     var body: some View {
         NavigationView {
@@ -36,10 +39,8 @@ struct CreateView: View {
             }
             .navigationBarItems(
                 leading: Button(action: {
-                    showingSheet = false
-                    presentationMode.wrappedValue.dismiss()
-                    selection = 0
-                    
+                    dismiss()
+                    didDismissCreateView()
                 }, label: {
                     Image(systemName: "xmark")
                 }),
@@ -54,13 +55,12 @@ struct CreateView: View {
                 }
                 .disabled(postTitle.isEmpty)
             )
-            .offset(y: yOffset)
+//            .offset(y: yOffset)
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    withAnimation (.easeInOut(duration: 0.5)){
-                        yOffset = 0
-                    }
-                }
+//                withAnimation(.easeInOut(duration: 0.5)){
+//                    yOffset = 0
+//            }
+                
                 // Show the keyboard immediately upon view appearance
                 
                 
